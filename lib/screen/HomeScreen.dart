@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
-
 import 'MainScreen.dart';
+import 'RegisterScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +59,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const MainScreen()),
+                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
                 );
               },
               child: Text("You have no account"))

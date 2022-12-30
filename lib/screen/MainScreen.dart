@@ -13,6 +13,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainPageState extends State<MainScreen> {
   var urlImage = "https://image.tmdb.org/t/p/w780/";
+  var vote_average = "Vote average";
   List<dynamic> listFilm = [];
   String url =
       "http://api.themoviedb.org/3/discover/movie?api_key=6292bf95dcc9ffdf348f8f49b6fcd696&language=en-US";
@@ -26,6 +27,7 @@ class _MainPageState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Film hot"),
@@ -35,34 +37,44 @@ class _MainPageState extends State<MainScreen> {
         itemCount: listFilm.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-              child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: SizedBox(
-              height: 100,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Image.network(
-                      '$urlImage${listFilm[index].backdropPath}',
+              child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MainScreen()),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: SizedBox(
+                height: 100,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Image.network(
+                        '$urlImage${listFilm[index].backdropPath}',
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${listFilm[index].title}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 5),
-                        const Text("data"),
-                      ],
-                    ),
-                  )
-                ],
+                    const SizedBox(width: 10),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${listFilm[index].title}',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          const SizedBox(height: 5),
+                          Text("Vote Average : " +
+                              '${listFilm[index].voteAverage}'),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ));
